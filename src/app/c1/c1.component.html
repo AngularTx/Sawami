@@ -1,0 +1,161 @@
+<!-- action items for the user -->
+<clr-button-group class="btn-primary">
+  <clr-button (click)="onAdd()">Add Product</clr-button>
+  <clr-button (click)="clearFilters()">Clear Filters</clr-button>
+</clr-button-group>
+<!-- action items for the user -->
+
+<!-- data grid to show product details -->
+<clr-datagrid #dg>
+  <clr-dg-column [clrDgField]="'code'">Code</clr-dg-column>
+  <clr-dg-column>Name</clr-dg-column>
+  <clr-dg-column [clrDgField]="'barcode'">Barcode</clr-dg-column>
+  <clr-dg-column [clrDgField]="'cost'" [clrDgColType]="'number'">Cost</clr-dg-column>
+  <clr-dg-column>Taxes</clr-dg-column>
+  <clr-dg-column [clrDgField]="'saleprice'" [clrDgColType]="'number'">Sale Price</clr-dg-column>
+  <clr-dg-column>Active</clr-dg-column>
+  <clr-dg-column>Created Date</clr-dg-column>
+  <clr-dg-column>Last Updated</clr-dg-column>
+  <clr-dg-row *clrDgItems="let product of products$ | async; trackBy:trackById" [clrDgItem]="product">
+    <clr-dg-action-overflow>
+      <button class="action-item" (click)="onEdit(product)">Edit</button>
+      <button class="action-item" (click)="onDelete(product)">Delete</button>
+    </clr-dg-action-overflow>
+    <clr-dg-cell>{{product.code}}</clr-dg-cell>
+    <clr-dg-cell>{{product.name}}</clr-dg-cell>
+    <clr-dg-cell>{{product.barcode}}</clr-dg-cell>
+    <clr-dg-cell>{{product.cost}}</clr-dg-cell>
+    <clr-dg-cell>{{product.taxes.toString()}}</clr-dg-cell>
+    <clr-dg-cell>{{product.saleprice}}</clr-dg-cell>
+    <clr-dg-cell *ngIf="product.active">
+      <cds-icon shape="check"></cds-icon>
+    </clr-dg-cell>
+    <clr-dg-cell *ngIf="!product.active">
+      <cds-icon shape="times"></cds-icon>
+    </clr-dg-cell>
+    <clr-dg-cell>{{product.created | date:'medium'}}</clr-dg-cell>
+    <clr-dg-cell>{{product.updated | date:'medium'}}</clr-dg-cell>
+  </clr-dg-row>
+  <clr-dg-footer>
+    <clr-dg-pagination #pagination [clrDgPageSize]="10">
+      <clr-dg-page-size [clrPageSizeOptions]="[10,20,50,100]">Users per page</clr-dg-page-size>
+      {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} users
+    </clr-dg-pagination>
+  </clr-dg-footer>
+</clr-datagrid>
+
+<!-- create and edit modal -->
+<clr-modal [(clrModalOpen)]="show" *ngIf="show">
+  <h3 class="modal-title">Add Product</h3>
+  <clr-tabs class="modal-body">
+    <clr-tab>
+      <button clrTabLink>Basic Details</button>
+      <clr-tab-content *clrIfActive>
+        <form clrForm [formGroup]="form">
+          <clr-input-container>
+            <label>Name</label>
+            <input clrInput type="text" formControlName="name">
+            <clr-control-helper>Product Name</clr-control-helper>
+            <clr-control-error *clrIfError="'required'">Please Enter Product Name</clr-control-error>
+            <clr-control-error *clrIfError="'minLength'">Product Name must be 4+ Characters</clr-control-error>
+          </clr-input-container>
+          <clr-input-container>
+            <label>Code</label>
+            <input clrInput type="number" formControlName="code">
+            <clr-control-helper>Product Code</clr-control-helper>
+            <clr-control-error *clrIfError="'required'">Please Enter Product Code</clr-control-error>
+          </clr-input-container>
+          <clr-input-container>
+            <label>BarCode</label>
+            <input clrInput type="number" formControlName="barcode">
+            <clr-control-helper>Product BarCode</clr-control-helper>
+          </clr-input-container>
+          <clr-toggle-wrapper>
+            <label>Product Active</label>
+            <input type="checkbox" clrToggle value="option1" formControlName="active" name="active" />
+          </clr-toggle-wrapper>
+          <div class="clr-form-control">
+            <label for="example7" class="clr-control-label">Description</label>
+            <div class="clr-control-container">
+              <div class="clr-textarea-wrapper">
+                <textarea id="example7" placeholder="Placeholder" class="clr-textarea"
+                  formControlName="description"></textarea>
+              </div>
+            </div>
+          </div>
+        </form>
+      </clr-tab-content>
+      <!-- </ng-template> -->
+    </clr-tab>
+
+    <clr-tab>
+      <button clrTabLink>Price & Tax</button>
+      <!-- <ng-template > -->
+      <clr-tab-content *clrIfActive>
+        <form clrForm [formGroup]="form">
+          <clr-combobox-container>
+            <label>Taxes</label>
+            <clr-combobox formControlName="taxes" name="multiSelect" clrMulti="true">
+              <ng-container *clrOptionSelected="let selected">
+                {{selected}}%
+              </ng-container>
+              <clr-options>
+                <clr-option *clrOptionItems="let state of [10,20,30]" [clrValue]="state">
+                  {{state}}%
+                </clr-option>
+              </clr-options>
+            </clr-combobox>
+            <clr-control-helper>Helper text</clr-control-helper>
+            <clr-control-error>There was an error</clr-control-error>
+          </clr-combobox-container>
+          <clr-input-container>
+            <label>Cost</label>
+            <input clrInput type="number" formControlName="cost">
+            <clr-control-helper>Cost of the Product</clr-control-helper>
+            <clr-control-error *clrIfError="'required'">Please Enter Product Cost</clr-control-error>
+          </clr-input-container>
+          <clr-input-container>
+            <label>Sale Price</label>
+            <input clrInput type="number" formControlName="saleprice">
+            <clr-control-helper>Product Sale Price</clr-control-helper>
+          </clr-input-container>
+          <clr-toggle-wrapper>
+            <label>Product Price Includes Tax</label>
+            <input type="checkbox" clrToggle value="option1" formControlName="priceIncludeTax" name="priceIncludeTax" />
+          </clr-toggle-wrapper>
+        </form>
+      </clr-tab-content>
+      <!-- </ng-template> -->
+    </clr-tab>
+
+    <clr-tab>
+      <button clrTabLink>Image</button>
+      <!-- <ng-template > -->
+      <clr-tab-content *clrIfActive>
+        <clr-button-group class="btn-primary">
+          <clr-button>Browse</clr-button>
+          <clr-button>Clear</clr-button>
+        </clr-button-group>
+      </clr-tab-content>
+      <!-- </ng-template> -->
+    </clr-tab>
+  </clr-tabs>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline" (click)="cancel()">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="save()" [disabled]="form.invalid">Save</button>
+  </div>
+</clr-modal>
+
+
+<!-- delete modal -->
+<clr-modal [(clrModalOpen)]="deleteProduct" *ngIf="deleteProduct">
+  <h3 class="modal-title">Deleting Product</h3>
+  <div class="modal-body">
+    <p>Are you sure you want to delete product {{selected.code}}</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline" (click)="cancel()">Cancel</button>
+    <button type="button" class="btn btn-danger" (click)="delete()">Delete</button>
+  </div>
+</clr-modal>
