@@ -2,8 +2,9 @@
   <header class="header-6">
     <div class="branding">
       <a href="javascript://" class="nav-link">
-        <cds-icon shape="vm-bug"></cds-icon>
-        <span class="title">Project Sawami App</span>
+        <!-- <cds-icon shape="vm-bug"></cds-icon> -->
+        <span class="main_logo"><img src="assets/images/sawami_logo.png" alt=""></span>
+        <span class="title mainLogo">Sawami</span>
       </a>
     </div>
     <div class="header-actions">
@@ -16,40 +17,28 @@
   <div class="content-container">
     <clr-vertical-nav [clrVerticalNavCollapsible]="true">
       <clr-vertical-nav-group routerLinkActive="active">
-        <clr-icon shape="user" clrVerticalNavIcon></clr-icon>
+        <cds-icon shape="user" clrVerticalNavIcon></cds-icon>
         Accounting
         <clr-vertical-nav-group-children>
-          <a
-            clrVerticalNavLink
-            routerLink="./accounting/stockcodes"
-            routerLinkActive="active"
-          >
+          <a clrVerticalNavLink routerLink="./accounting/stockcodes" routerLinkActive="active">
             Stock Codes
           </a>
         </clr-vertical-nav-group-children>
       </clr-vertical-nav-group>
       <clr-vertical-nav-group routerLinkActive="active">
-        <clr-icon shape="flame" clrVerticalNavIcon></clr-icon>
+        <cds-icon shape="clipboard" clrVerticalNavIcon></cds-icon>
         Reporting
         <clr-vertical-nav-group-children>
-          <a
-            clrVerticalNavLink
-            routerLink="./reporting/stockreports"
-            routerLinkActive="active"
-          >
+          <a clrVerticalNavLink routerLink="./reporting/stockreports" routerLinkActive="active">
             Stock Reports
           </a>
         </clr-vertical-nav-group-children>
       </clr-vertical-nav-group>
       <clr-vertical-nav-group routerLinkActive="active">
-        <clr-icon shape="bolt" clrVerticalNavIcon></clr-icon>
+        <cds-icon shape="file" clrVerticalNavIcon></cds-icon>
         Document
         <clr-vertical-nav-group-children>
-          <a
-            clrVerticalNavLink
-            routerLink="./document/documententry"
-            routerLinkActive="active"
-          >
+          <a clrVerticalNavLink routerLink="./document/documententry" routerLinkActive="active">
             Document Entry
           </a>
         </clr-vertical-nav-group-children>
@@ -59,6 +48,5 @@
       <router-outlet></router-outlet>
     </div>
   </div>
-  
-</div>
 
+</div>

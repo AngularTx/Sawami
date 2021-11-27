@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ClarityIcons, userIcon, homeIcon, addTextIcon, plusIcon, trashIcon, checkIcon } from '@cds/core/icon';
+import { ClarityIcons, userIcon, homeIcon, addTextIcon, plusIcon, trashIcon, checkIcon, plusCircleIcon, recycleIcon } from '@cds/core/icon';
 import { ClrDatagrid, ClrDatagridColumn } from '@clr/angular';
 import { Observable } from 'rxjs';
 import { DialogService } from '../dialog.service';
@@ -40,7 +40,7 @@ export class C1Component implements OnInit {
     });
   }
   ngOnInit(): void {
-    ClarityIcons.addIcons(userIcon, homeIcon, addTextIcon, plusIcon, trashIcon, checkIcon);
+    ClarityIcons.addIcons(userIcon, homeIcon, addTextIcon, plusIcon, trashIcon, checkIcon, plusCircleIcon,recycleIcon);
   }
 
   onAdd() {
