@@ -11,14 +11,14 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'accounting/stockcodes',
+    path: 'accounting/products',
     component: C1Component,
   },
   {
     path: 'reporting/stockreports',
     component: C2Component,
   },
-   {
+  {
     path: 'document/documententry',
     component: C3Component,
   },

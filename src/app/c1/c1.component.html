@@ -1,33 +1,43 @@
 <!-- action items for the user -->
 <clr-button-group class="btn-primary">
+  <clr-button (click)="clearFilters()">
+    <cds-icon shape="refresh"></cds-icon> {{'refresh' | translate | titlecase}}
+  </clr-button>
   <clr-button (click)="onAdd()">
-    <cds-icon shape="plus-circle"></cds-icon> Add Product
+    <cds-icon shape="plus-circle"></cds-icon> {{'add product' | translate | titlecase}}
   </clr-button>
   <clr-button (click)="clearFilters()">
-    <cds-icon shape="recycle"></cds-icon> Clear Filters
+    <cds-icon shape="filter-off"></cds-icon> {{'clear filters' | translate | titlecase}}
+  </clr-button>
+  <clr-button (click)="clearFilters()">
+    <cds-icon shape="import"></cds-icon> {{'import' | translate | titlecase}}
+  </clr-button>
+  <clr-button (click)="clearFilters()">
+    <cds-icon shape="export"></cds-icon> {{'export' | translate | titlecase}}
   </clr-button>
 </clr-button-group>
 <!-- action items for the user -->
 
 <!-- data grid to show product details -->
 <clr-datagrid #dg>
-  <clr-dg-column [clrDgField]="'code'">Code</clr-dg-column>
-  <clr-dg-column>Name</clr-dg-column>
-  <clr-dg-column [clrDgField]="'barcode'">Barcode</clr-dg-column>
-  <clr-dg-column [clrDgField]="'cost'" [clrDgColType]="'number'">Cost</clr-dg-column>
-  <clr-dg-column>Taxes</clr-dg-column>
-  <clr-dg-column [clrDgField]="'saleprice'" [clrDgColType]="'number'">Sale Price</clr-dg-column>
-  <clr-dg-column>Active</clr-dg-column>
-  <clr-dg-column>Created Date</clr-dg-column>
-  <clr-dg-column>Last Updated</clr-dg-column>
+  <clr-dg-column [clrDgField]="'code'" [(clrFilterValue)]="code">{{'code' | translate | titlecase}}</clr-dg-column>
+  <clr-dg-column [clrDgField]="'barcode'" [(clrFilterValue)]="barcode">{{'barcode' | translate | titlecase}}
+  </clr-dg-column>
+  <clr-dg-column>{{'name' | translate | titlecase }}</clr-dg-column>
+  <clr-dg-column>{{'cost' | translate | titlecase}}</clr-dg-column>
+  <clr-dg-column>{{'taxes' | translate | titlecase}}</clr-dg-column>
+  <clr-dg-column>{{'sale price' | translate | titlecase}}</clr-dg-column>
+  <clr-dg-column>{{'active' | translate | titlecase}}</clr-dg-column>
+  <clr-dg-column>{{'created date' | translate | titlecase}}</clr-dg-column>
+  <clr-dg-column>{{'last updated' | translate | titlecase}}</clr-dg-column>
   <clr-dg-row *clrDgItems="let product of products$ | async; trackBy:trackById" [clrDgItem]="product">
     <clr-dg-action-overflow>
-      <button class="action-item" (click)="onEdit(product)">Edit</button>
-      <button class="action-item" (click)="onDelete(product)">Delete</button>
+      <button class="action-item" (click)="onEdit(product)">{{'edit' | translate | titlecase}}</button>
+      <button class="action-item" (click)="onDelete(product)">{{'delete' | translate | titlecase}}</button>
     </clr-dg-action-overflow>
     <clr-dg-cell>{{product.code}}</clr-dg-cell>
-    <clr-dg-cell>{{product.name}}</clr-dg-cell>
     <clr-dg-cell>{{product.barcode}}</clr-dg-cell>
+    <clr-dg-cell>{{product.name}}</clr-dg-cell>
     <clr-dg-cell>{{product.cost}}</clr-dg-cell>
     <clr-dg-cell>{{product.taxes.toString()}}</clr-dg-cell>
     <clr-dg-cell>{{product.saleprice}}</clr-dg-cell>
@@ -37,25 +47,27 @@
     <clr-dg-cell *ngIf="!product.active">
       <cds-icon shape="times" status="danger" size="sm"></cds-icon>
     </clr-dg-cell>
-    <clr-dg-cell>{{product.created | date:'medium'}}</clr-dg-cell>
-    <clr-dg-cell>{{product.updated | date:'medium'}}</clr-dg-cell>
+    <clr-dg-cell>{{product.created | date}}</clr-dg-cell>
+    <clr-dg-cell>{{product.updated | date}}</clr-dg-cell>
   </clr-dg-row>
   <clr-dg-footer>
     <clr-dg-pagination #pagination [clrDgPageSize]="10">
-      <clr-dg-page-size [clrPageSizeOptions]="[10,20,50,100]">Users per page</clr-dg-page-size>
-      {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} users
+      <clr-dg-page-size [clrPageSizeOptions]="[10,20,50,100]">Products per page</clr-dg-page-size>
+      {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} products
     </clr-dg-pagination>
   </clr-dg-footer>
 </clr-datagrid>
 
 <!-- create and edit modal -->
 <clr-modal [(clrModalOpen)]="show" *ngIf="show">
-  <h3 class="modal-title">Add Product</h3>
+  <h3 class="modal-title">{{editProducts ? 'Edit Product' : 'Add Product'}} </h3>
   <clr-tabs class="modal-body">
     <clr-tab>
-      <button clrTabLink>Basic Details</button>
+      <button clrTabLink>
+        <cds-icon shape="list"></cds-icon> Basic Details
+      </button>
       <clr-tab-content *clrIfActive>
-        <form clrForm [formGroup]="form" class="here-is-my-tab">
+        <form clrForm [formGroup]="form" class="modal-fixed-height">
           <clr-input-container>
             <label>Name</label>
             <input clrInput type="text" formControlName="name">
@@ -93,10 +105,12 @@
     </clr-tab>
 
     <clr-tab>
-      <button clrTabLink>Price & Tax</button>
+      <button clrTabLink>
+        <cds-icon shape="dollar"></cds-icon>Product Price & Tax
+      </button>
       <!-- <ng-template > -->
       <clr-tab-content *clrIfActive>
-        <form clrForm [formGroup]="form">
+        <form clrForm [formGroup]="form" class="modal-fixed-height">
           <clr-combobox-container>
             <label>Taxes</label>
             <clr-combobox formControlName="taxes" name="multiSelect" clrMulti="true">
@@ -133,14 +147,16 @@
     </clr-tab>
 
     <clr-tab>
-      <button clrTabLink>Image</button>
+      <button clrTabLink>
+        <cds-icon shape="image"></cds-icon> Product Image
+      </button>
       <!-- <ng-template > -->
       <clr-tab-content *clrIfActive>
-        <form clrForm [formGroup]="form">
-            <clr-button-group class="btn-primary">
-              <clr-button>Browse</clr-button>
-              <clr-button>Clear</clr-button>
-            </clr-button-group>
+        <form clrForm [formGroup]="form" class="modal-fixed-height">
+          <clr-button-group class="btn-primary">
+            <clr-button>Browse</clr-button>
+            <clr-button>Clear</clr-button>
+          </clr-button-group>
         </form>
       </clr-tab-content>
       <!-- </ng-template> -->

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ClarityIcons, userIcon, homeIcon, addTextIcon, plusIcon, trashIcon, checkIcon, plusCircleIcon, recycleIcon } from '@cds/core/icon';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ClarityIcons, userIcon, homeIcon, addTextIcon, plusIcon, filterOffIcon, refreshIcon, importIcon, exportIcon, trashIcon, checkIcon, plusCircleIcon, recycleIcon, filterGridIcon, listIcon, dollarIcon, imageIcon } from '@cds/core/icon';
 import { ClrDatagrid, ClrDatagridColumn } from '@clr/angular';
 import { Observable } from 'rxjs';
 import { DialogService } from '../dialog.service';
@@ -22,6 +22,8 @@ export class C1Component implements OnInit {
   editProducts: boolean = false;
   addProducts: boolean = false;
   deleteProduct: boolean = false;
+  barcode!: string;
+  code!: string;
 
   constructor(private dialog: DialogService, private formBuilder: FormBuilder,
     private productsService: ProductService) {
@@ -40,7 +42,7 @@ export class C1Component implements OnInit {
     });
   }
   ngOnInit(): void {
-    ClarityIcons.addIcons(userIcon, homeIcon, addTextIcon, plusIcon, trashIcon, checkIcon, plusCircleIcon,recycleIcon);
+    ClarityIcons.addIcons(userIcon, homeIcon, addTextIcon, plusIcon, trashIcon, checkIcon, plusCircleIcon, recycleIcon, filterGridIcon, filterOffIcon, refreshIcon, importIcon, exportIcon, listIcon, dollarIcon, imageIcon);
   }
 
   onAdd() {
@@ -102,7 +104,7 @@ export class C1Component implements OnInit {
   }
 
   clearFilters() {
-   this.columns.forEach(column => column.filterValue = "");
+    this.columns.forEach(column => column.filterValue = "");
   }
 
   delete() {

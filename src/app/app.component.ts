@@ -1,21 +1,26 @@
 import { Component } from '@angular/core';
-import { boltIcon, ClarityIcons, clipboardIcon, fileIcon, userIcon } from '@cds/core/icon';
+import { ClarityIcons, clipboardIcon, fileIcon, userIcon, languageIcon, cogIcon, applicationIcon } from '@cds/core/icon';
 import { TranslateService } from '@ngx-translate/core';
-
+import '@cds/core/icon/register.js';
+import '@cds/core/button/register.js';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'webapp';
-  selected = 2;
-  constructor(translate: TranslateService) {
-    // this language will be used as a fallback when a translation isn't found in the current language
-    translate.setDefaultLang('ar');
+  constructor(private translate: TranslateService) {
+    const browserLang = translate.getBrowserLang();
+    const lang = browserLang ? (browserLang.match(/en|fr/) ? browserLang : 'en') : 'en';
+    this.translate.use(lang);
+    ClarityIcons.addIcons(userIcon, fileIcon, clipboardIcon, languageIcon, cogIcon, applicationIcon);
+  }
 
-     // the lang to use, if the lang isn't available, it will use the current loader to get them
-    translate.use('ar');
-    ClarityIcons.addIcons(userIcon,fileIcon,clipboardIcon);
-}
+  selectLang(lang: string) {
+    this.translate.use(lang);
+  }
+
+  themUpdate(theme: string) {
+    console.log(`them is : ${theme}`)
+  }
 }

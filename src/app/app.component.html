@@ -1,45 +1,67 @@
 <div class="main-container">
-  <header class="header-6">
+  <header class="header header-6">
+    <!-- logo -->
     <div class="branding">
       <a href="javascript://" class="nav-link">
         <!-- <cds-icon shape="vm-bug"></cds-icon> -->
         <span class="main_logo"><img src="assets/images/sawami_logo.png" alt=""></span>
-        <span class="title mainLogo">Sawami</span>
+        <span class="title mainLogo">{{'sawami' | translate | titlecase}}</span>
       </a>
     </div>
+    <!-- logo -->
     <div class="header-actions">
-      <a href="javascript://" class="nav-link nav-icon-text">
-        <cds-icon shape="user"></cds-icon>
-        <span class="nav-text">{{'username' | translate}}</span>
-      </a>
+      <!-- language icon -->
+      <clr-dropdown>
+        <button clrDropdownTrigger aria-label="">
+          <cds-icon shape="language" size="md"></cds-icon>
+        </button>
+        <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
+          <div type="button" clrDropdownItem (click)="selectLang('ar')">Arabic</div>
+          <div type="button" clrDropdownItem (click)="selectLang('en')">English</div>
+        </clr-dropdown-menu>
+      </clr-dropdown>
+      <!-- language icon -->
+      <!-- language icon -->
+      <clr-dropdown>
+        <button clrDropdownTrigger aria-label="">
+          <cds-icon shape="cog" size="md"></cds-icon>
+        </button>
+        <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
+          <div type="button" clrDropdownItem (click)="themUpdate('dk')">Dark Theme</div>
+          <div type="button" clrDropdownItem (click)="themUpdate('std')">Standard Theme</div>
+        </clr-dropdown-menu>
+      </clr-dropdown>
+      <!-- language icon -->
+
     </div>
   </header>
+  <!-- main container start  -->
   <div class="content-container">
     <clr-vertical-nav [clrVerticalNavCollapsible]="true">
       <clr-vertical-nav-group routerLinkActive="active">
-        <cds-icon shape="user" clrVerticalNavIcon></cds-icon>
-        Accounting
+        <cds-icon shape="application" size="md" clrVerticalNavIcon></cds-icon>
+        {{'applications' | translate | titlecase}}
         <clr-vertical-nav-group-children>
-          <a clrVerticalNavLink routerLink="./accounting/stockcodes" routerLinkActive="active">
-            Stock Codes
+          <a clrVerticalNavLink routerLink="./accounting/products" routerLinkActive="active">
+            {{'products' | translate | titlecase}}
           </a>
         </clr-vertical-nav-group-children>
       </clr-vertical-nav-group>
       <clr-vertical-nav-group routerLinkActive="active">
-        <cds-icon shape="clipboard" clrVerticalNavIcon></cds-icon>
-        Reporting
+        <cds-icon shape="clipboard" size="md" clrVerticalNavIcon></cds-icon>
+        {{'reporting' | translate | titlecase}}
         <clr-vertical-nav-group-children>
           <a clrVerticalNavLink routerLink="./reporting/stockreports" routerLinkActive="active">
-            Stock Reports
+            {{'stock reports' | translate | titlecase}}
           </a>
         </clr-vertical-nav-group-children>
       </clr-vertical-nav-group>
       <clr-vertical-nav-group routerLinkActive="active">
-        <cds-icon shape="file" clrVerticalNavIcon></cds-icon>
-        Document
+        <cds-icon shape="file" size="md" clrVerticalNavIcon></cds-icon>
+        {{'document' | translate | titlecase}}
         <clr-vertical-nav-group-children>
           <a clrVerticalNavLink routerLink="./document/documententry" routerLinkActive="active">
-            Document Entry
+            {{'document entry' | translate | titlecase}}
           </a>
         </clr-vertical-nav-group-children>
       </clr-vertical-nav-group>
@@ -48,5 +70,4 @@
       <router-outlet></router-outlet>
     </div>
   </div>
-
 </div>

@@ -1,5 +1,25 @@
 {
-    "Hello": "مرحبا",
-    "Just Text": "مجرد نص",
-    "username": "مرحبا"
+    "sawami": "Sawami",
+    "refresh": "تحديث",
+    "add product": "أضف منتج",
+    "clear filters": "مرشحات واضحة",
+    "import": "يستورد",
+    "export": "يصدر",
+    "applications": "التطبيقات",
+    "products": "منتجات",
+    "reporting": "التقارير",
+    "stock reports": "تقارير المخزون",
+    "document": "وثيقة",
+    "document entry": "إدخال المستند",
+    "code": "الشفرة",
+    "barcode": "الرمز الشريطي",
+    "name": "اسم",
+    "cost": "كلفة",
+    "taxes": "الضرائب",
+    "sale price": "سعر البيع ",
+    "active": "نشيط",
+    "created date": "تاريخ الإنشاء",
+    "last updated": "التحديث الاخير",
+    "edit": "تعديل",
+    "delete": "حذف"
 }

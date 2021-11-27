@@ -1,5 +1,25 @@
 {
-    "Hello": "Hello",
-    "Just Text": "Just Text",
-    "username": "xxx"
+    "sawami": "Sawami",
+    "refresh": "refresh",
+    "add product": "add product",
+    "clear filters": "clear filters",
+    "import": "import",
+    "export": "export",
+    "applications": "applications",
+    "products": "products",
+    "reporting": "reporting",
+    "stock reports": "stock reports",
+    "document": "document",
+    "document entry": "document entry",
+    "code": "code",
+    "barcode": "bar code",
+    "name": "name",
+    "cost": "cost",
+    "taxes": "taxes",
+    "sale price": "sale price",
+    "active": "active",
+    "created date": "created date",
+    "last updated": "last updated",
+    "edit": "edit",
+    "delete": "delete"
 }
