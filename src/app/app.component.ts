@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { boltIcon, ClarityIcons, clipboardIcon, fileIcon, userIcon } from '@cds/core/icon';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -15,5 +16,6 @@ export class AppComponent {
 
      // the lang to use, if the lang isn't available, it will use the current loader to get them
     translate.use('ar');
+    ClarityIcons.addIcons(userIcon,fileIcon,clipboardIcon);
 }
 }

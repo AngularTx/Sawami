@@ -1,7 +1,11 @@
 <!-- action items for the user -->
 <clr-button-group class="btn-primary">
-  <clr-button (click)="onAdd()">Add Product</clr-button>
-  <clr-button (click)="clearFilters()">Clear Filters</clr-button>
+  <clr-button (click)="onAdd()">
+    <cds-icon shape="plus-circle"></cds-icon> Add Product
+  </clr-button>
+  <clr-button (click)="clearFilters()">
+    <cds-icon shape="recycle"></cds-icon> Clear Filters
+  </clr-button>
 </clr-button-group>
 <!-- action items for the user -->
 
@@ -28,10 +32,10 @@
     <clr-dg-cell>{{product.taxes.toString()}}</clr-dg-cell>
     <clr-dg-cell>{{product.saleprice}}</clr-dg-cell>
     <clr-dg-cell *ngIf="product.active">
-      <cds-icon shape="check"></cds-icon>
+      <cds-icon shape="check" status="success" size="sm"></cds-icon>
     </clr-dg-cell>
     <clr-dg-cell *ngIf="!product.active">
-      <cds-icon shape="times"></cds-icon>
+      <cds-icon shape="times" status="danger" size="sm"></cds-icon>
     </clr-dg-cell>
     <clr-dg-cell>{{product.created | date:'medium'}}</clr-dg-cell>
     <clr-dg-cell>{{product.updated | date:'medium'}}</clr-dg-cell>
@@ -51,7 +55,7 @@
     <clr-tab>
       <button clrTabLink>Basic Details</button>
       <clr-tab-content *clrIfActive>
-        <form clrForm [formGroup]="form">
+        <form clrForm [formGroup]="form" class="here-is-my-tab">
           <clr-input-container>
             <label>Name</label>
             <input clrInput type="text" formControlName="name">
@@ -75,7 +79,7 @@
             <input type="checkbox" clrToggle value="option1" formControlName="active" name="active" />
           </clr-toggle-wrapper>
           <div class="clr-form-control">
-            <label for="example7" class="clr-control-label">Description</label>
+            <label for="example7" style="padding-left: 0;" class="clr-control-label">Description</label>
             <div class="clr-control-container">
               <div class="clr-textarea-wrapper">
                 <textarea id="example7" placeholder="Placeholder" class="clr-textarea"
@@ -132,10 +136,12 @@
       <button clrTabLink>Image</button>
       <!-- <ng-template > -->
       <clr-tab-content *clrIfActive>
-        <clr-button-group class="btn-primary">
-          <clr-button>Browse</clr-button>
-          <clr-button>Clear</clr-button>
-        </clr-button-group>
+        <form clrForm [formGroup]="form">
+            <clr-button-group class="btn-primary">
+              <clr-button>Browse</clr-button>
+              <clr-button>Clear</clr-button>
+            </clr-button-group>
+        </form>
       </clr-tab-content>
       <!-- </ng-template> -->
     </clr-tab>

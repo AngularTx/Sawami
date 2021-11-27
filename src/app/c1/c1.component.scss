@@ -1,0 +1,10 @@
+.here-is-my-tab {
+    height: 17rem !important;
+}
+.clr-control-container textarea {
+    width: 100%;
+}
+.clr-toggle-wrapper input[type="checkbox"]:checked + label::before {
+    background-color: #0072a3;
+    border: #0072a3;
+}

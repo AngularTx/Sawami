@@ -1,1 +1,51 @@
 /* You can add global styles to this file, and also import other style files */
+.main-container {
+    .header-6 {
+        background: #0072a3;
+        .branding {
+            .title {
+                font-size: 18px;
+                font-weight: bold;
+            }
+            .mainLogo {
+                color: #fff;
+            }
+        }
+    }
+    .content-container {
+        .content-area {
+            background: #edf0f7;
+        }
+        .clr-vertical-nav {
+            background: #fff;
+            border-right: solid 1px #ccc;
+        }
+    }
+    .datagrid {
+        .datagrid-column {
+            font-size: 14px;
+        }
+    }
+    .clr-vertical-nav {
+        .nav-group-trigger {
+            outline: none;
+        }
+    }
+    .clr-input {
+        width: 100%;
+    }
+    .clr-toggle-wrapper {
+        padding: 1rem 0;
+    }
+    .btn,
+    .btn-link,
+    button {
+        outline: none;
+    }
+    .clr-control-container {
+        width: 100%;
+    }
+    .clr-combobox-wrapper.multi {
+        width: 100%;
+    }
+}
