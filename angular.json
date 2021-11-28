@@ -32,11 +32,13 @@
             ],
             "styles": [
               "node_modules/@clr/ui/clr-ui.min.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [
               "node_modules/@cds/core/icon/register.js",
-              "node_modules/@cds/core/button/register.js"
+              "node_modules/@cds/core/button/register.js",
+              "node_modules/@cds/core/file/register.js"
             ]
           },
           "configurations": {
@@ -111,5 +113,5 @@
       }
     }
   },
-  "defaultProject": "webapp"
+  "defaultProject": "Sawami"
 }

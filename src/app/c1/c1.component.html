@@ -12,7 +12,7 @@
   <clr-button (click)="clearFilters()">
     <cds-icon shape="import"></cds-icon> {{'import' | translate | titlecase}}
   </clr-button>
-  <clr-button (click)="clearFilters()">
+  <clr-button (click)="exportFiles()">
     <cds-icon shape="export"></cds-icon> {{'export' | translate | titlecase}}
   </clr-button>
 </clr-button-group>
@@ -154,9 +154,16 @@
       <clr-tab-content *clrIfActive>
         <form clrForm [formGroup]="form" class="modal-fixed-height">
           <clr-button-group class="btn-primary">
-            <clr-button>Browse</clr-button>
-            <clr-button>Clear</clr-button>
+            <clr-button (click)="file.click()">
+              <cds-icon shape="image"></cds-icon> Browse
+            </clr-button>
+            <input #file type="file" accept='image/*' (change)="preview(file.files)" />
+            <clr-button (click)="imgURL = null; message = ''">
+              <cds-icon shape="times-circle"></cds-icon> Clear
+            </clr-button>
           </clr-button-group>
+          <span style="color:red;" *ngIf="message">{{message}}</span>
+          <img [src]="imgURL" style="margin-top: 1rem;" height="200" *ngIf="imgURL">
         </form>
       </clr-tab-content>
       <!-- </ng-template> -->
@@ -179,5 +186,27 @@
   <div class="modal-footer">
     <button type="button" class="btn btn-outline" (click)="cancel()">Cancel</button>
     <button type="button" class="btn btn-danger" (click)="delete()">Delete</button>
+  </div>
+</clr-modal>
+
+<clr-modal [(clrModalOpen)]="exportFile" (closeChange)="cancelexport()" *ngIf="exportFile">
+  <h3 class="modal-title">Export Data</h3>
+  <div class="modal-body">
+    <p>Select Export Type</p>
+    <form clrForm [formGroup]="form" class="modal-fixed-height">
+      <clr-radio-wrapper>
+        <input type="radio" clrRadio formControlName="exportType" value="csv" name="exportType" />
+        <label> Csv(Excel)</label>
+      </clr-radio-wrapper>
+      <clr-radio-wrapper>
+        <input type="radio" clrRadio formControlName="exportType" value="xml" name="exportType" />
+        <label> Xml</label>
+      </clr-radio-wrapper>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" [disabled]="!form.get('exportType').value" class="btn btn-outline"
+      (click)="continueexport()">Continue</button>
+    <button type="button" class="btn btn-outline" (click)="cancelexport()">Cancel</button>
   </div>
 </clr-modal>
