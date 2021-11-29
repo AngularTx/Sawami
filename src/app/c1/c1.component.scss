@@ -8,3 +8,19 @@
     background-color: #0072a3;
     border: #0072a3;
 }
+.upload_img {
+    width: 300px;
+    padding: 0rem;
+    height: 300px;
+    overflow: hidden;
+    margin: 0rem auto 1rem;
+    position: relative;
+    img {
+        width: 100%;
+        padding: 1rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
