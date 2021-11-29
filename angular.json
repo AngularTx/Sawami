@@ -6,7 +6,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Sawami": {
+    "webapp": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
