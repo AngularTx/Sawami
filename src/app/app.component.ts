@@ -23,4 +23,8 @@ export class AppComponent {
   themUpdate(theme: string) {
     console.log(`them is : ${theme}`)
   }
+
+  isLoggedIn(): boolean {
+    return Boolean(sessionStorage.getItem('login'));
+  }
 }

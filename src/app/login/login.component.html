@@ -1,0 +1,28 @@
+<div class="login-wrapper">
+    <form class="login" [formGroup]="form">
+        <section class="title">
+            Sawami POS Application
+            <h5 class="hint">Use your Company ID to sign in</h5>
+        </section>
+        <div class="login-group">
+            <clr-select-container>
+                <label class="clr-sr-only">User Role</label>
+                <select clrSelect name="type" formControlName="type">
+                    <option value="local">Local Users</option>
+                    <option value="admin">Administrator</option>
+                </select>
+            </clr-select-container>
+            <clr-input-container>
+                <label class="clr-sr-only">Username</label>
+                <input type="text" formControlName="email" name="username" clrInput placeholder="Username" />
+                <clr-control-error *clrIfError="'required'">Email Required</clr-control-error>
+            </clr-input-container>
+            <clr-password-container>
+                <label class="clr-sr-only">Password</label>
+                <input type="password" formControlName="password" name="password" clrPassword placeholder="Password" />
+                <clr-control-error *clrIfError="'required'">Password Required</clr-control-error>
+            </clr-password-container>
+            <button type="submit" (click)="submit()" [disabled]="form.invalid" class="btn btn-primary">NEXT</button>
+        </div>
+    </form>
+</div>
