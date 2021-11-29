@@ -106,7 +106,7 @@
 
     <clr-tab>
       <button clrTabLink>
-        <cds-icon shape="dollar"></cds-icon>Product Price & Tax
+        <cds-icon shape="dollar"></cds-icon> Price & Tax
       </button>
       <!-- <ng-template > -->
       <clr-tab-content *clrIfActive>
@@ -148,24 +148,41 @@
 
     <clr-tab>
       <button clrTabLink>
-        <cds-icon shape="image"></cds-icon> Product Image
+        <cds-icon shape="image"></cds-icon> Image & Color
       </button>
       <!-- <ng-template > -->
       <clr-tab-content *clrIfActive>
         <form clrForm [formGroup]="form" class="modal-fixed-height">
-          <span style="color:red;" *ngIf="message">{{message}}</span>
-          <div class="upload_img" *ngIf="imgURL">
-            <img [src]="imgURL">
+          <div class="clr-row">
+            <div class="card">
+              <div class="card-block">
+                color picker: <input [(colorPicker)]="color" [style.background]="color" />
+              </div>
+            </div>
           </div>
-          <clr-button-group class="btn-primary" style="width: 100%;">
-            <clr-button (click)="file.click()">
-              <cds-icon shape="image"></cds-icon> Browse
-            </clr-button>
-            <input #file type="file" accept='image/*' (change)="preview(file.files)" />
-            <clr-button (click)="imgURL = null; message = ''">
-              <cds-icon shape="times-circle"></cds-icon> Clear
-            </clr-button>
-          </clr-button-group>          
+          <div class="clr-row">
+            <div class="card">
+              <div class="card-block">
+                <span style="color:red;" *ngIf="message">{{message}}</span>
+                Image:<div class="upload_img" *ngIf="imgURL">
+                  <img [src]="imgURL">
+                </div>
+              </div>
+              <div class="card-footer">
+                <clr-button-group class="btn-primary">
+                  <clr-button (click)="file.click()">
+                    <cds-icon shape="image"></cds-icon> Browse
+                  </clr-button>
+                  <input #file type="file" accept='image/*' (change)="preview(file.files)" />
+                  <clr-button (click)="imgURL = null; message = ''">
+                    <cds-icon shape="times-circle"></cds-icon> Clear
+                  </clr-button>
+                </clr-button-group>
+              </div>
+            </div>
+          </div>
+
+
         </form>
       </clr-tab-content>
       <!-- </ng-template> -->

@@ -25,6 +25,7 @@
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
     "js2xmlparser": "^4.0.2",
+    "ngx-color-picker": "^11.0.0",
     "ngx-toastr": "^14.2.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.1.0",
