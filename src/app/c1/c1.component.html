@@ -153,6 +153,7 @@
       <!-- <ng-template > -->
       <clr-tab-content *clrIfActive>
         <form clrForm [formGroup]="form" class="modal-fixed-height">
+          color picker: <input [(colorPicker)]="color" [style.background]="color"/>
           <span style="color:red;" *ngIf="message">{{message}}</span>
           <div class="upload_img" *ngIf="imgURL">
             <img [src]="imgURL">
