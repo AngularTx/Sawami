@@ -9,7 +9,7 @@
       </a>
     </div>
     <!-- logo -->
-    <div class="header-actions">
+    <div class="header-actions" *ngIf="isLoggedIn()">
       <!-- language icon -->
       <clr-dropdown>
         <button clrDropdownTrigger aria-label="">
