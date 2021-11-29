@@ -153,7 +153,11 @@
       <!-- <ng-template > -->
       <clr-tab-content *clrIfActive>
         <form clrForm [formGroup]="form" class="modal-fixed-height">
-          <clr-button-group class="btn-primary">
+          <span style="color:red;" *ngIf="message">{{message}}</span>
+          <div class="upload_img" *ngIf="imgURL">
+            <img [src]="imgURL">
+          </div>
+          <clr-button-group class="btn-primary" style="width: 100%;">
             <clr-button (click)="file.click()">
               <cds-icon shape="image"></cds-icon> Browse
             </clr-button>
@@ -161,9 +165,7 @@
             <clr-button (click)="imgURL = null; message = ''">
               <cds-icon shape="times-circle"></cds-icon> Clear
             </clr-button>
-          </clr-button-group>
-          <span style="color:red;" *ngIf="message">{{message}}</span>
-          <img [src]="imgURL" style="margin-top: 1rem;" height="200" *ngIf="imgURL">
+          </clr-button-group>          
         </form>
       </clr-tab-content>
       <!-- </ng-template> -->
