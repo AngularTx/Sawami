@@ -167,13 +167,9 @@ export class C1Component implements OnInit {
   }
 
   exporttoXml() {
-    const data = this.datagrid.items.displayed.map((column, index) => {
-      return Object.values(column).join(",");
-    }).join("\n");
-
     let anchor = this.renderer.createElement('a');
     this.renderer.setStyle(anchor, 'visibility', 'hidden');
-    this.renderer.setAttribute(anchor, 'href', 'data:/xml;charset=utf-8,' + JsonToXML.parse("products", data));
+    this.renderer.setAttribute(anchor, 'href', 'data:/xml;charset=utf-8,' + JsonToXML.parse("products", this.datagrid.items.displayed));
     this.renderer.setAttribute(anchor, 'target', '_blank');
     this.renderer.setAttribute(anchor, 'download', 'products.xml');
     anchor.click();
