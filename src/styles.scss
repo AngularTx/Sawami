@@ -48,6 +48,11 @@
     .clr-combobox-wrapper.multi {
         width: 100%;
     }
+    button.close{
+        border: solid 1px #CCC;
+        border-radius: 4px;
+        outline: none;
+    }
 }
 
 /* Works on Firefox */

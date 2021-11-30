@@ -11,9 +11,9 @@
 .upload_img {
     width: 300px;
     padding: 0rem;
-    height: 300px;
+    height: 125px;
     overflow: hidden;
-    margin: 0rem auto 1rem;
+    margin: 0rem auto 0.5rem;
     position: relative;
     img {
         width: 100%;
@@ -22,5 +22,13 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+    }
+}
+.card-block{
+    border-bottom: solid 1px #0072a3;
+    input{
+        border:solid 1px #CCC;
+        border-radius: 4px;
+        width: 50px;
     }
 }
